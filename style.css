@@ -5,7 +5,7 @@ body {
 .header {
     display: flex;
     justify-content: center;
-    
+
     background-color: whitesmoke;
     height: 100px;
     box-shadow: rgba(0, 0, 0, 0.45) 0px 25px 20px -20px;
@@ -19,27 +19,51 @@ body {
 
 
 .card {
-    width: 280px;
+    gap: 16px;
     margin-top: 20px;
     margin-left: 20px;
+    display: flex;
+    flex-wrap: wrap;
 }
 
 
-#pokedex {
+.pokedex {
     background-color: rgba(168, 0, 0, 0.747);
     color: white;
-    display: flex;
-    flex-direction: column;
     padding: 24px;
     border-radius: 67px;
+    margin-bottom: 25px;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+
 }
 
 
-#pokemonImage {
-    
+.pokemonImage {
     width: 200px;
 }
 
-.stats{
+.stats {
     color: black;
+}
+
+.loadMore-btn {
+    display: flex;
+    justify-content: center;
+}
+
+.loadMore-btn button {
+    display: flex;
+    justify-content: center;
+    margin: 24px;
+    height: 42px;
+    width: 144px;
+    display: flex;
+    align-items: center;
+    border-radius: 67px;
+    cursor: pointer;
+    background-color: #EE4034;
+    color: white;
+
 }
