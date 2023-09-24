@@ -36,7 +36,22 @@ body {
     display: flex;
     flex-wrap: wrap;
     flex-direction: column;
+}
 
+.pokedex:hover {
+    background-color: rgba(168, 0, 0, 0.493);
+    cursor: pointer;
+}
+
+.pokemonHeader{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 5px;
+}
+
+.pokemonName:first-letter {
+    text-transform: capitalize;
 }
 
 
