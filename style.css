@@ -15,7 +15,9 @@ body {
     object-fit: contain;
 }
 
-
+.d-none {
+    display: none;
+}
 
 
 .card {
@@ -25,7 +27,6 @@ body {
     display: flex;
     flex-wrap: wrap;
 }
-
 
 .pokedex {
     background-color: rgba(168, 0, 0, 0.747);
@@ -43,7 +44,7 @@ body {
     cursor: pointer;
 }
 
-.pokemonHeader{
+.pokemonHeader {
     display: flex;
     align-items: center;
     justify-content: space-between;
@@ -53,7 +54,6 @@ body {
 .pokemonName:first-letter {
     text-transform: capitalize;
 }
-
 
 .pokemonImage {
     width: 200px;
@@ -81,4 +81,18 @@ body {
     background-color: #EE4034;
     color: white;
 
+}
+
+
+.openPokedexCard {
+    background-color: rgba(0, 0, 0, 0.2);
+    z-index: 999;
+    position: fixed;
+    left: 0;
+    right: 0;
+    top: 0;
+    bottom: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 }

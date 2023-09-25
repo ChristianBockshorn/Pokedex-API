@@ -21,6 +21,9 @@ async function loadPokemon() {
 }
 
 
+
+
+
 function genPokeCard(i, currentPokemon) {
     let pokeCard = document.getElementById(`card`);
     pokeCard.innerHTML += `
@@ -33,6 +36,10 @@ function genPokeCard(i, currentPokemon) {
         
         <img id="pokemonImage${i}" class="pokemonImage">
         <p class="stats">stats</p>
+
+        <div id="openPokedexCard${i}" class="openPokedexCard d-none"
+            onclick="closePokedexCard(${i})">
+        </div>
     </div>
     `;
     document.getElementById(`pokemonName${i}`).innerHTML = currentPokemon['name'];
@@ -41,7 +48,26 @@ function genPokeCard(i, currentPokemon) {
 }
 
 
+function openPokedexCard() {
+    document.getElementById(`openPokedexCard`).classList.remove('d-none');
+}
+
+
+function closePokedexCard() {
+    document.getElementById(`openPokedexCard`).classList.add('d-none');
+}
+
+
+function doNotClose(event) {
+    event.stopPropagation();
+}
+
 function loadMorePokemon() {
     currentPokemonIndex += loadStop;
     loadPokemon();
 }
+
+
+
+
+
