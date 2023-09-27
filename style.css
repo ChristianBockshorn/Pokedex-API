@@ -15,9 +15,7 @@ body {
     object-fit: contain;
 }
 
-.d-none {
-    display: none;
-}
+
 
 
 .card {
@@ -84,8 +82,8 @@ body {
 }
 
 
-.openPokedexCard {
-    background-color: rgba(0, 0, 0, 0.2);
+.dialog-bg {
+    background-color: rgba(155 153 153 / 54%);
     z-index: 999;
     position: fixed;
     left: 0;
@@ -95,4 +93,17 @@ body {
     display: flex;
     justify-content: center;
     align-items: center;
+}
+
+.dialog {
+    height: 40vh;
+    width: 40vw;
+    background-color: white;
+    border: 1px solid lightgray;
+    border-radius: 15px;
+    padding: 24px;
+}
+
+.d-none {
+    display: none;
 }

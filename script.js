@@ -23,11 +23,10 @@ async function loadPokemon() {
 
 
 
-
 function genPokeCard(i, currentPokemon) {
     let pokeCard = document.getElementById(`card`);
     pokeCard.innerHTML += `
-    <div id="pokedex${i}" class="pokedex">
+    <div id="pokedex${i}" class="pokedex" onclick="openDialog()">
         <div class="pokemonHeader">
             <h1 id="pokemonName${i}" class="pokemonName">Name</h1>    
             <h2 id="pokemonId${i}">#</h2>
@@ -37,9 +36,10 @@ function genPokeCard(i, currentPokemon) {
         <img id="pokemonImage${i}" class="pokemonImage">
         <p class="stats">stats</p>
 
-        <div id="openPokedexCard${i}" class="openPokedexCard d-none"
-            onclick="closePokedexCard(${i})">
-        </div>
+        
+
+        
+    
     </div>
     `;
     document.getElementById(`pokemonName${i}`).innerHTML = currentPokemon['name'];
@@ -47,15 +47,16 @@ function genPokeCard(i, currentPokemon) {
     document.getElementById(`pokemonImage${i}`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
 }
 
-
-function openPokedexCard() {
-    document.getElementById(`openPokedexCard`).classList.remove('d-none');
+function openDialog() {
+    document.getElementById(`dialog`).classList.remove('d-none');
 }
 
 
-function closePokedexCard() {
-    document.getElementById(`openPokedexCard`).classList.add('d-none');
+function closeDialog() {
+    document.getElementById(`dialog`).classList.add('d-none');
 }
+
+
 
 
 function doNotClose(event) {
