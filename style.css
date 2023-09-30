@@ -40,6 +40,7 @@ body {
 .pokedex:hover {
     background-color: rgba(168, 0, 0, 0.493);
     cursor: pointer;
+    
 }
 
 .pokemonHeader {
@@ -82,7 +83,7 @@ body {
 }
 
 
-.dialog-bg {
+.pokeCard-bg {
     background-color: rgba(155 153 153 / 54%);
     z-index: 999;
     position: fixed;
@@ -95,7 +96,7 @@ body {
     align-items: center;
 }
 
-.dialog {
+.pokeCard {
     height: 40vh;
     width: 40vw;
     background-color: white;

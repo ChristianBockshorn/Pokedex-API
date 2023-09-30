@@ -19,12 +19,15 @@
 
     <main>
         <div class="card" id="card">
-        </div>
-        <div id="dialog" class="dialog-bg d-none" onclick="closeDialog()">
-            <div class="dialog">
-                
+            <div id="pokeCard" class="pokeCard-bg d-none" onclick="closePokeCard()">
+                <div class="pokeCard" id="pokemonDetailInfo" onclick="doNotClose(event)">
+                    
+                </div>
             </div>
         </div>
+        
+        
+        
         <div class="loadMore-btn">
             <button onclick="loadMorePokemon()">load more</button>
         </div>
