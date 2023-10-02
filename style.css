@@ -40,7 +40,7 @@ body {
 .pokedex:hover {
     background-color: rgba(168, 0, 0, 0.493);
     cursor: pointer;
-    
+
 }
 
 .pokemonHeader {
@@ -97,14 +97,128 @@ body {
 }
 
 .pokeCard {
-    height: 40vh;
-    width: 40vw;
+    width: 450px;
     background-color: white;
-    border: 1px solid lightgray;
-    border-radius: 15px;
-    padding: 24px;
+    border: 3px solid lightgray;
+    border-radius: 50px;
+
 }
 
 .d-none {
     display: none;
 }
+
+.pokemonDetailInfoContainer {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+}
+
+.pokemonDetailInfoHeader {
+    display: flex;
+    justify-content: space-around;
+    align-items: center;
+}
+
+.pokemonDetailInfoImg {
+    display: flex;
+    justify-content: center;
+}
+
+.pokemonDetailInfoOverview {
+    background-color: aqua;
+    border-radius: 50px;
+    border-radius: 9px;
+}
+
+.pokemonDetailInfoOverviewHeader {
+    display: flex;
+    justify-content: space-evenly;
+
+}
+
+.statsDiv {}
+
+
+/*  About Stats Moves */
+.container {
+    /* max-width: 400px; */
+    margin: 30px auto;
+}
+
+.box {
+    box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
+    background-color: #fff;
+    border-radius: 3px;
+    overflow: hidden;
+}
+
+.tab-list {
+    margin: 0;
+    padding: 0;
+    list-style: none;
+    display: flex;
+    position: relative;
+}
+
+/* tab list  */
+.tab-list::before {
+    content: '';
+    display: block;
+    height: 2px;
+    width: 33.333%;
+    position: absolute;
+    bottom: 0;
+    background-color: #aaa;
+    transition: .3s;
+}
+
+.tab-item {
+    flex: 1;
+    text-align: center;
+    transition: .3s;
+    opacity: 0.5;
+}
+
+.tab-toggle {
+    display: none;
+}
+
+.tab-content {
+    display: none;
+    
+    flex-direction: column;
+}
+
+.tab-toggle:nth-child(1):checked~.tab-list .tab-item:nth-child(1),
+.tab-toggle:nth-child(2):checked~.tab-list .tab-item:nth-child(2),
+.tab-toggle:nth-child(3):checked~.tab-list .tab-item:nth-child(3) {
+    opacity: 1;
+}
+
+/* tab bar */
+.tab-toggle:nth-child(2):checked~.tab-list::before {
+    transform: translateX(100%);
+}
+
+.tab-toggle:nth-child(3):checked~.tab-list::before {
+    transform: translateX(200%);
+}
+
+
+.tab-toggle:nth-child(1):checked~.tab-container .tab-content:nth-child(1),
+.tab-toggle:nth-child(2):checked~.tab-container .tab-content:nth-child(2),
+.tab-toggle:nth-child(3):checked~.tab-container .tab-content:nth-child(3) {
+    display: block;
+}
+
+.tab-trigger {
+    display: block;
+    padding: 10px 0;
+}
+
+.tab-container {
+    padding: 15px 30px;
+}
+
+/*  About Stats Moves */
