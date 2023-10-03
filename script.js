@@ -66,7 +66,8 @@ function genPokeCardDetails(i) {
     let pokemonImg = allPokemon[`${i}`]['sprites']['other']['official-artwork']['front_default'];
     let selectedPokemonHeight = allPokemon[`${i}`]['height'];
     let selectedPokemonWeight = allPokemon[`${i}`]['weight'];
-    let selectedPokemonAbilities = allPokemon[`${i}`]['abilities']['0'];
+    let selectedPokemonAbilities0 = allPokemon[`${i}`]['abilities']['0']['ability']['name'];
+    let selectedPokemonAbilities1 = allPokemon[`${i}`]['abilities']['1']['ability']['name'];
     let pokeCardDetails = document.getElementById(`pokemonDetailInfo`);
 
     pokeCardDetails.innerHTML = `
@@ -118,7 +119,7 @@ function genPokeCardDetails(i) {
                                     <div class="statsContentValues">
                                         <span>${selectedPokemonHeight / 10} m</span>
                                         <span>${selectedPokemonWeight / 10} kg</span>
-                                        <span>${selectedPokemonAbilities}</span>
+                                        <span>${selectedPokemonAbilities0}, ${selectedPokemonAbilities1}</span>
                                     </div>
                                 </div>
                             </div>
