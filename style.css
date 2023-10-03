@@ -186,7 +186,21 @@ body {
 
 .tab-content {
     display: none;
-    
+}
+
+.tab-content-about-container{
+    display: flex;
+    gap: 80px;
+
+}
+
+.statsContentValues{
+    display: flex;
+    flex-direction: column;
+}
+
+.tab-content-about{
+    display: flex;
     flex-direction: column;
 }
 

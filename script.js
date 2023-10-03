@@ -64,7 +64,9 @@ function genPokeCardDetails(i) {
     let pokemonName = allPokemon[`${i}`]['name'];
     let pokemonId = allPokemon[`${i}`]['id'];
     let pokemonImg = allPokemon[`${i}`]['sprites']['other']['official-artwork']['front_default'];
-
+    let selectedPokemonHeight = allPokemon[`${i}`]['height'];
+    let selectedPokemonWeight = allPokemon[`${i}`]['weight'];
+    let selectedPokemonAbilities = allPokemon[`${i}`]['abilities']['0'];
     let pokeCardDetails = document.getElementById(`pokemonDetailInfo`);
 
     pokeCardDetails.innerHTML = `
@@ -106,21 +108,37 @@ function genPokeCardDetails(i) {
                         
                         <div class="tab-container">
                             <div class="tab-content">
-                                <span>Height</span>
-                                <span>Weight</span>
-                                <span>Abilities</span>
+                                <div class="tab-content-about-container">
+                                    <div class="tab-content-about">
+                                        <span>Height</span>
+                                        <span>Weight</span>
+                                        <span>Abilities</span>
+                                    </div>
+
+                                    <div class="statsContentValues">
+                                        <span>${selectedPokemonHeight / 10} m</span>
+                                        <span>${selectedPokemonWeight / 10} kg</span>
+                                        <span>${selectedPokemonAbilities}</span>
+                                    </div>
+                                </div>
                             </div>
 
-                            <div class="tab-content">Stats</div>
+                            <div class="tab-content">
+                                <div class="tab-content-stats">
+                                    Stats
+                                </div>        
+                            </div>
 
-                            <div class="tab-content">Moves</div>
+                            <div class="tab-content">
+                                <div class="tab-content-moves">
+                                    moves
+                                </div>        
+                            </div>
                         </div>
                     </div>
                 </div>
-
             </div>
-        </div>  
-        
+        </div>        
     </div>
  `;
 
