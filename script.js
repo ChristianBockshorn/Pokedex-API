@@ -18,6 +18,7 @@ async function loadPokemon() {
         genPokeCard(i, currentPokemon);
 
     }
+    
 }
 
 
@@ -39,13 +40,14 @@ function genPokeCard(i, currentPokemon) {
     document.getElementById(`pokemonId${i}`).innerHTML = '#' + currentPokemon['id'];
     document.getElementById(`pokemonImage${i}`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
 
-
+    
 }
 
 
-function openPokeCard(i) {
+function openPokeCard(i,allPokemon) {
     document.getElementById(`pokeCard`).classList.remove('d-none');
     genPokeCardDetails(i);
+    renderChart(i,allPokemon);
 }
 
 
@@ -69,6 +71,7 @@ function genPokeCardDetails(i) {
     let selectedPokemonAbilities0 = allPokemon[`${i}`]['abilities']['0']['ability']['name'];
     let selectedPokemonAbilities1 = allPokemon[`${i}`]['abilities']['1']['ability']['name'];
     let pokeCardDetails = document.getElementById(`pokemonDetailInfo`);
+    
 
     pokeCardDetails.innerHTML = `
     <div class="pokemonDetailInfoContainer">
@@ -126,7 +129,7 @@ function genPokeCardDetails(i) {
 
                             <div class="tab-content">
                                 <div class="tab-content-stats">
-                                    Stats
+                                    <canvas id="myChart${i}"></canvas>
                                 </div>        
                             </div>
 
@@ -146,7 +149,7 @@ function genPokeCardDetails(i) {
     document.getElementById(`pokemonName${i}`).innerHTML = pokemonName;
     document.getElementById(`pokemonId${i}`).innerHTML = '#' + pokemonId;
     document.getElementById(`pokemonImage${i}`).src = pokemonImg;
-
+    
 }
 
 
@@ -154,5 +157,6 @@ function genPokeCardDetails(i) {
 function loadMorePokemon() {
     currentPokemonIndex += loadStop;
     loadPokemon();
+    
 }
 
