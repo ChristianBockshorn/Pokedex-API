@@ -188,18 +188,18 @@ body {
     display: none;
 }
 
-.tab-content-about-container{
+.tab-content-about-container {
     display: flex;
     gap: 80px;
 
 }
 
-.statsContentValues{
+.statsContentValues {
     display: flex;
     flex-direction: column;
 }
 
-.tab-content-about{
+.tab-content-about {
     display: flex;
     flex-direction: column;
 }
@@ -232,7 +232,25 @@ body {
 }
 
 .tab-container {
-    padding: 15px 30px;
+    /* padding: 15px 30px; */
 }
 
 /*  About Stats Moves */
+
+
+.moves {
+    background-color: brown;
+    padding: 11px 21px;
+    border-radius: 20px;
+    font-size: 20px;
+}
+
+.movesContainer{
+    gap: 8px;
+    display: flex;
+    overflow-y: auto;
+    height: 183px;
+    flex-wrap: wrap;
+    padding: 24px;
+    justify-content: center;
+}
