@@ -56,6 +56,24 @@ body {
 
 .pokemonImage {
     width: 200px;
+    filter: drop-shadow(2px 4px 6px black);
+}
+
+.pokemonImage:hover {
+    transform: scale(1.2);
+    transition: 600ms;
+}
+
+.arrow {
+    object-fit: contain;
+    padding: 34px;
+    cursor: pointer;
+}
+
+.detailPokemonImg {
+    height: 400px;
+    z-index: 1;
+    filter: drop-shadow(2px 4px 6px black);
 }
 
 .stats {
@@ -101,6 +119,8 @@ body {
     background-color: white;
     border: 3px solid lightgray;
     border-radius: 50px;
+    border-bottom-right-radius: 13px;
+    border-bottom-left-radius: 13px;
 
 }
 
@@ -123,10 +143,11 @@ body {
 .pokemonDetailInfoImg {
     display: flex;
     justify-content: center;
+    align-items: center;
 }
 
 .pokemonDetailInfoOverview {
-    background-color: aqua;
+
     border-radius: 50px;
     border-radius: 9px;
 }
@@ -143,13 +164,16 @@ body {
 /*  About Stats Moves */
 .container {
     /* max-width: 400px; */
-    margin: 30px auto;
+    /* margin: 30px auto; */
 }
 
 .box {
     box-shadow: 0 3px 12px rgba(0, 0, 0, 0.15);
     background-color: #fff;
-    border-radius: 3px;
+    border-top-left-radius: 35px;
+    border-top-right-radius: 35px;
+    border-bottom-right-radius: 10px;
+    border-bottom-left-radius: 10px;
     overflow: hidden;
 }
 
@@ -180,6 +204,10 @@ body {
     opacity: 0.5;
 }
 
+.tab-item:hover {
+    color: rgb(128, 128, 128);
+}
+
 .tab-toggle {
     display: none;
 }
@@ -191,17 +219,23 @@ body {
 .tab-content-about-container {
     display: flex;
     gap: 80px;
+    justify-content: center;
+    margin-top: 10px;
+    margin-bottom: 10px;
+    font-size: 20px;
 
 }
 
 .statsContentValues {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .tab-content-about {
     display: flex;
     flex-direction: column;
+    gap: 10px;
 }
 
 .tab-toggle:nth-child(1):checked~.tab-list .tab-item:nth-child(1),
@@ -243,9 +277,10 @@ body {
     padding: 11px 21px;
     border-radius: 20px;
     font-size: 20px;
+    color: white;
 }
 
-.movesContainer{
+.movesContainer {
     gap: 8px;
     display: flex;
     overflow-y: auto;
@@ -254,3 +289,41 @@ body {
     padding: 24px;
     justify-content: center;
 }
+
+/* Scrollbar */
+
+/* width */
+::-webkit-scrollbar {
+    width: 20px;
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+    box-shadow: inset 0 0 5px grey;
+    border-radius: 10px;
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+    /* background: brown; */
+    border-radius: 10px;
+    height: 10px;
+    background: url('./img/pokeball.png') rgba(165, 42, 42, 0.425);
+    
+    background-repeat: no-repeat;
+    background-position: center;
+    background-size: contain;
+
+}
+
+/* Handle on hover */
+/* ::-webkit-scrollbar-thumb:hover {
+    background: #64b6fd8a;
+    background: url('./img/pokeball.png') ;
+    background-size: 20px 22px;
+    background-repeat: no-repeat;
+    background-position: center;
+   
+} */
+
+

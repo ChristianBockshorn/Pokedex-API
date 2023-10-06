@@ -92,13 +92,22 @@ function genPokeCardDetails(i) {
 
     pokeCardDetails.innerHTML = `
     <div class="pokemonDetailInfoContainer">
+
         <div class="pokemonDetailInfoHeader">
             <h1 id="pokemonName${i}" class="pokemonName">Name</h1>    
             <h2 id="pokemonId${i}">#</h2>
         </div>
-
+        
         <div class="pokemonDetailInfoImg">
-            <img id="pokemonImage${i}" class=""> 
+            <div>
+                <img class="arrow" src="/img/arrow-left.png">
+            </div>
+            
+            <img id="pokemonImage${i}" class="detailPokemonImg"> 
+            <div>
+                <img class="arrow" src="/img/arrow-right.png">
+            </div>
+            
         </div>    
 
         <div class="pokemonDetailInfoOverview">
@@ -131,9 +140,9 @@ function genPokeCardDetails(i) {
                             <div class="tab-content">
                                 <div class="tab-content-about-container">
                                     <div class="tab-content-about">
-                                        <span>Height</span>
-                                        <span>Weight</span>
-                                        <span>Abilities</span>
+                                        <span>Height:</span>
+                                        <span>Weight:</span>
+                                        <span>Abilities:</span>
                                     </div>
 
                                     <div class="statsContentValues">
