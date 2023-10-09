@@ -150,7 +150,7 @@ function genPokeCardDetails(i) {
                                     <div class="statsContentValues">
                                         <span>${selectedPokemonHeight / 10} m</span>
                                         <span>${selectedPokemonWeight / 10} kg</span>
-                                        <span>${selectedPokemonAbilities.length > 0 ? `<span>${selectedPokemonAbilities}</span>` : ''}</span>
+                                        <span>${selectedPokemonAbilities.length > 0 ? `<span>${selectedPokemonAbilities.map(a => a['ability']['name'])}</span>` : ''}</span>
                                         
                                     </div>
                                 </div>
