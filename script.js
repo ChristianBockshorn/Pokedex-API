@@ -24,7 +24,7 @@ async function loadPokemon() {
 
 function genPokeCard(i, currentPokemon) {
     let pokeCard = document.getElementById(`card`);
-    pokeCard.innerHTML += `
+    pokeCard.innerHTML += /* html */`
     <div id="pokedex${i}" class="pokedex" onclick="openPokeCard(${i - 1})">
         <div class="pokemonHeader">
             <h1 id="pokemonName${i}" class="pokemonName">Name</h1>    
@@ -65,11 +65,11 @@ function getPokemonMoves(i) {
     let movesContainer = document.getElementById(`moves`);
     let moves = allPokemon[`${i}`]['moves'];
     for (let m = 0; m < moves.length; m++) {
-        renderPokemonMoves(m,moves,movesContainer);
+        renderPokemonMoves(m, moves, movesContainer);
     }
 }
 
-function renderPokemonMoves(m,moves,movesContainer){
+function renderPokemonMoves(m, moves, movesContainer) {
     let move = moves[m]['move']['name'];
     movesContainer.innerHTML += `
     <span class="moves" id="move${m}">${move}</span>
@@ -84,13 +84,15 @@ function genPokeCardDetails(i) {
     let pokemonImg = allPokemon[`${i}`]['sprites']['other']['official-artwork']['front_default'];
     let selectedPokemonHeight = allPokemon[`${i}`]['height'];
     let selectedPokemonWeight = allPokemon[`${i}`]['weight'];
-    let selectedPokemonAbilities0 = allPokemon[`${i}`]['abilities']['0']['ability']['name'];
-    let selectedPokemonAbilities1 = allPokemon[`${i}`]['abilities']['1']['ability']['name'];
+    // let selectedPokemonAbilities0 = allPokemon[`${i}`]['abilities']['0']['ability']['name'];
+    // let selectedPokemonAbilities1 = allPokemon[`${i}`]['abilities']['1']['ability']['name'];
+
+    let selectedPokemonAbilities = allPokemon[i]['abilities'];
 
     let pokeCardDetails = document.getElementById(`pokemonDetailInfo`);
 
 
-    pokeCardDetails.innerHTML = `
+    pokeCardDetails.innerHTML = /* html */`
     <div class="pokemonDetailInfoContainer">
 
         <div class="pokemonDetailInfoHeader">
@@ -100,12 +102,12 @@ function genPokeCardDetails(i) {
         
         <div class="pokemonDetailInfoImg">
             <div>
-                <img class="arrow" src="/img/arrow-left.png">
+                <img class="arrow" onclick="previousPokemon(${i})" src="./img/arrow-left.png">
             </div>
             
             <img id="pokemonImage${i}" class="detailPokemonImg"> 
             <div>
-                <img class="arrow" src="/img/arrow-right.png">
+                <img class="arrow" onclick="nextPokemon(${i})" src="./img/arrow-right.png">
             </div>
             
         </div>    
@@ -148,7 +150,8 @@ function genPokeCardDetails(i) {
                                     <div class="statsContentValues">
                                         <span>${selectedPokemonHeight / 10} m</span>
                                         <span>${selectedPokemonWeight / 10} kg</span>
-                                        <span>${selectedPokemonAbilities0}, ${selectedPokemonAbilities1}</span>
+                                        <span>${selectedPokemonAbilities.length > 0 ? `<span>${selectedPokemonAbilities}</span>` : ''}</span>
+                                        
                                     </div>
                                 </div>
                             </div>
@@ -171,7 +174,7 @@ function genPokeCardDetails(i) {
         </div>        
     </div>
  `;
- 
+
 
     document.getElementById(`pokemonName${i}`).innerHTML = pokemonName;
     document.getElementById(`pokemonId${i}`).innerHTML = '#' + pokemonId;
@@ -180,12 +183,25 @@ function genPokeCardDetails(i) {
 }
 
 
-
-
-
 function loadMorePokemon() {
     currentPokemonIndex += loadStop;
     loadPokemon();
 
 }
 
+function nextPokemon(i) {
+    i++;
+    openPokeCard(i, allPokemon);
+
+
+    // currentPokemonIndex++;
+    // if (currentPokemonIndex >= allPokemon.length) {
+    //     currentPokemonIndex = 0; 
+    // }
+    // openPokeCard(currentPokemonIndex);
+}
+
+function previousPokemon(i) {
+    i--;
+    openPokeCard(i, allPokemon);
+}
