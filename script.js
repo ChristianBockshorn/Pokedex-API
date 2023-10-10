@@ -61,6 +61,7 @@ function doNotClose(event) {
     event.stopPropagation();
 }
 
+
 function getPokemonMoves(i) {
     let movesContainer = document.getElementById(`moves`);
     let moves = allPokemon[`${i}`]['moves'];
@@ -68,6 +69,7 @@ function getPokemonMoves(i) {
         renderPokemonMoves(m, moves, movesContainer);
     }
 }
+
 
 function renderPokemonMoves(m, moves, movesContainer) {
     let move = moves[m]['move']['name'];
@@ -78,19 +80,13 @@ function renderPokemonMoves(m, moves, movesContainer) {
 
 
 function genPokeCardDetails(i) {
-
     let pokemonName = allPokemon[`${i}`]['name'];
     let pokemonId = allPokemon[`${i}`]['id'];
     let pokemonImg = allPokemon[`${i}`]['sprites']['other']['official-artwork']['front_default'];
     let selectedPokemonHeight = allPokemon[`${i}`]['height'];
     let selectedPokemonWeight = allPokemon[`${i}`]['weight'];
-    // let selectedPokemonAbilities0 = allPokemon[`${i}`]['abilities']['0']['ability']['name'];
-    // let selectedPokemonAbilities1 = allPokemon[`${i}`]['abilities']['1']['ability']['name'];
-
     let selectedPokemonAbilities = allPokemon[i]['abilities'];
-
     let pokeCardDetails = document.getElementById(`pokemonDetailInfo`);
-
 
     pokeCardDetails.innerHTML = /* html */`
     <div class="pokemonDetailInfoContainer">
@@ -175,11 +171,9 @@ function genPokeCardDetails(i) {
     </div>
  `;
 
-
     document.getElementById(`pokemonName${i}`).innerHTML = pokemonName;
     document.getElementById(`pokemonId${i}`).innerHTML = '#' + pokemonId;
     document.getElementById(`pokemonImage${i}`).src = pokemonImg;
-
 }
 
 
@@ -192,13 +186,6 @@ function loadMorePokemon() {
 function nextPokemon(i) {
     i++;
     openPokeCard(i, allPokemon);
-
-
-    // currentPokemonIndex++;
-    // if (currentPokemonIndex >= allPokemon.length) {
-    //     currentPokemonIndex = 0; 
-    // }
-    // openPokeCard(currentPokemonIndex);
 }
 
 function previousPokemon(i) {
