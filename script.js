@@ -4,6 +4,7 @@ let loadStop = 20;
 let currentPokemonIndex = 0;
 
 
+
 async function loadPokemon() {
     const startIndex = currentPokemonIndex + 1;
     const endIndex = currentPokemonIndex + loadStop;
@@ -191,4 +192,26 @@ function nextPokemon(i) {
 function previousPokemon(i) {
     i--;
     openPokeCard(i, allPokemon);
+}
+
+
+
+
+
+
+function filterPokemon() {
+    let search = document.getElementById('search');
+    search.innerHTML='';
+
+    for (let s = 0; s < allPokemon.length; s++) {
+        let pokemon = allPokemon[s];
+        search.innerHTML+=`pokedex${s}`
+        
+    }
+
+   
+}
+
+function searchPokemon(filteredPokemon) {
+   
 }
