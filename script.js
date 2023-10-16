@@ -199,19 +199,61 @@ function previousPokemon(i) {
 
 
 
+// function filterPokemon() {
+//     let pokemoncard = document.getElementById('search');
+//     pokemoncard.innerHTML = '';
+
+//     for (let s = 0; s < allPokemon.length; s++) {
+//         let pokemon = allPokemon[s];
+//         pokemoncard.innerHTML += `pokedex${s}`;
+
+//     }
+//     searchPokemon();
+
+// }
+
+// function searchPokemon() {
+//     let search = document.getElementById('search').value;
+//     search = search.toLowerCase();
+//     console.log(search);
+   
+
+
+//     let pokemoncard = document.getElementById('search');
+//     pokemoncard.innerHTML = '';
+
+//     for (let s = 0; s < allPokemon.length; s++) {
+        
+//         let pokemon = allPokemon[`${s}`]['name'];
+//         if(pokemon.toLowerCase().includes(search)){
+//             pokemoncard.innerHTML += `${pokemon}`;
+//         }
+
+//     }
+// }
+
 function filterPokemon() {
-    let search = document.getElementById('search');
-    search.innerHTML='';
+    let pokemoncard = document.getElementById('card');
+    pokemoncard.innerHTML = '';
 
     for (let s = 0; s < allPokemon.length; s++) {
-        let pokemon = allPokemon[s];
-        search.innerHTML+=`pokedex${s}`
-        
+        pokemoncard.innerHTML += `<div id="pokedex${s}" class="pokedex"></div>`;
+        genPokeCard(s, allPokemon[s]);
     }
-
-   
+    searchPokemon();
 }
 
-function searchPokemon(filteredPokemon) {
-   
+function searchPokemon() {
+    let search = document.getElementById('search').value.toLowerCase();
+    let pokemoncard = document.getElementById('card');
+    pokemoncard.innerHTML = '';
+
+    for (let s = 0; s < allPokemon.length; s++) {
+        let pokemonName = allPokemon[s]['name'].toLowerCase();
+        if (pokemonName.includes(search)) {
+            pokemoncard.innerHTML += `<div id="pokedex${s}" class="pokedex"></div>`;
+            pokemoncard.innerHTML = '';
+            genPokeCard(s, allPokemon[s]);
+        }
+    }
 }

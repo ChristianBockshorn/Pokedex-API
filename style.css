@@ -326,4 +326,7 @@ body {
    
 } */
 
-
+.searchContainer{
+    display: flex;
+    justify-content: center;
+}

@@ -21,9 +21,12 @@
     </header>
 
     <main>
+        <div class="searchContainer">
+            <input onchange="filterPokemon()" type="text" id="search" placeholder="Pokemon Name eingeben">
+            <button id="searchButton">Suchen</button>
+        </div>
+        
 
-        <input onkeyup="filterPokemon()" type="text" id="search" placeholder="Pokemon Name eingeben">
-        <button id="searchButton">Suchen</button>
         <div class="card" id="card">
             <div id="pokeCard" class="pokeCard-bg d-none" onclick="closePokeCard()">
                 <div class="pokeCard" id="pokemonDetailInfo" onclick="doNotClose(event)">
