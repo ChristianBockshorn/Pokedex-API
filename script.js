@@ -2,6 +2,25 @@ let currentPokemon;
 let allPokemon = [];
 let loadStop = 20;
 let currentPokemonIndex = 0;
+let typeColors = {
+    normal: '#A8A878',
+    fire: '#F08030',
+    water: '#6890F0',
+    electric: '#F8D030',
+    grass: '#78C850',
+    ice: '#98D8D8',
+    fighting: '#C03028',
+    poison: '#A040A0',
+    ground: '#E0C068',
+    psychic: '#F85888',
+    bug: '#A8B820',
+    rock: '#B8A038',
+    ghost: '#705898',
+    dragon: '#7038F8',
+    dark: '#705848',
+    steel: '#B8B8D0',
+    fairy: '#EE99AC',
+};
 
 
 // Asynchrone Funktion zum Laden von Pokémon-Daten von der API
@@ -24,7 +43,7 @@ async function loadPokemon() {
 
 // Funktion zum Erzeugen einer Pokémon-Karte
 function genPokeCard(i, currentPokemon) {
-        // Holt den Container für die Karten und fügt HTML-Code für eine neue Karte hinzu
+    // Holt den Container für die Karten und fügt HTML-Code für eine neue Karte hinzu
     let pokeCard = document.getElementById(`card`);
     pokeCard.innerHTML += /* html */`
     <div id="pokedex${i}" class="pokedex" onclick="openPokeCard(${i - 1})">
@@ -32,9 +51,7 @@ function genPokeCard(i, currentPokemon) {
             <h1 id="pokemonName${i}" class="pokemonName">Name</h1>    
             <h2 id="pokemonId${i}">#</h2>
         </div>
-        
         <img id="pokemonImage${i}" class="pokemonImage">
-        
     </div>
     `;
 
@@ -42,12 +59,25 @@ function genPokeCard(i, currentPokemon) {
     document.getElementById(`pokemonName${i}`).innerHTML = currentPokemon['name'];
     document.getElementById(`pokemonId${i}`).innerHTML = '#' + currentPokemon['id'];
     document.getElementById(`pokemonImage${i}`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
+
+    // Setzen Sie die Hintergrundfarbe der Karte basierend auf dem Typ des Pokémon
+    setBackgroundColor(i);
+}
+
+function setBackgroundColor(i) {
+    for (let j = 0; j < allPokemon.length; j++) {
+        let typeBackgrounds = allPokemon[j]['types'][0]['type']['name']; // Holen Sie den ersten Typ des Pokémon
+        let backgroundColor = typeColors[typeBackgrounds]; // Bestimmen Sie die Hintergrundfarbe basierend auf dem Typ
+
+        // Ändern Sie die Hintergrundfarbe der entsprechenden Karte
+        document.getElementById(`pokedex${i}`).style.backgroundColor = backgroundColor;
+    }
 }
 
 
 // Funktion zum Öffnen einer ausgewählten Pokémon-Karte mit Details
 function openPokeCard(i, allPokemon) {
-        // Zeigt die Karte an und ruft Funktionen zum Anzeigen von Details auf
+    // Zeigt die Karte an und ruft Funktionen zum Anzeigen von Details auf
     document.getElementById(`pokeCard`).classList.remove('d-none');
     genPokeCardDetails(i);
     renderChart(i, allPokemon);
@@ -79,8 +109,7 @@ function getPokemonMoves(i) {
 function renderPokemonMoves(m, moves, movesContainer) {
     let move = moves[m]['move']['name'];
     movesContainer.innerHTML += `
-    <span class="moves" id="move${m}">${move}</span>
-        `;
+    <span class="moves" id="move${m}">${move}</span>`;
 }
 
 
@@ -93,9 +122,16 @@ function genPokeCardDetails(i) {
     let selectedPokemonAbilities = allPokemon[i]['abilities'];
     let pokeCardDetails = document.getElementById(`pokemonDetailInfo`);
 
-    pokeCardDetails.innerHTML = /* html */`
-    <div class="pokemonDetailInfoContainer">
+    pokeCardDetails.innerHTML = createPokemonDetailHTML(i, selectedPokemonHeight, selectedPokemonWeight, selectedPokemonAbilities);
+    
+    document.getElementById(`pokemonName${i}`).innerHTML = pokemonName;
+    document.getElementById(`pokemonId${i}`).innerHTML = '#' + pokemonId;
+    document.getElementById(`pokemonImage${i}`).src = pokemonImg;
+}
 
+function createPokemonDetailHTML(i, selectedPokemonHeight, selectedPokemonWeight, selectedPokemonAbilities) {
+    return /* html */`
+    <div class="pokemonDetailInfoContainer">
         <div class="pokemonDetailInfoHeader">
             <h1 id="pokemonName${i}" class="pokemonName">Name</h1>    
             <h2 id="pokemonId${i}">#</h2>
@@ -105,22 +141,15 @@ function genPokeCardDetails(i) {
             <div>
                 <img class="arrow" onclick="previousPokemon(${i})" src="./img/arrow-left.png">
             </div>
-            
             <img id="pokemonImage${i}" class="detailPokemonImg"> 
             <div>
                 <img class="arrow" onclick="nextPokemon(${i})" src="./img/arrow-right.png">
             </div>
-            
         </div>    
 
         <div class="pokemonDetailInfoOverview">
-            <div class="pokemonDetailInfoOverviewHeader">
-                
-            </div>
-
+            <div class="pokemonDetailInfoOverviewHeader"></div>
             <div class="statsDiv" id="aboutTab">
-                
-
                 <div class="container">
                     <div class="box">
                         <input type="radio" class="tab-toggle" name="tab-toggle" id="tab1" checked>
@@ -152,7 +181,6 @@ function genPokeCardDetails(i) {
                                         <span>${selectedPokemonHeight / 10} m</span>
                                         <span>${selectedPokemonWeight / 10} kg</span>
                                         <span>${selectedPokemonAbilities.length > 0 ? `<span>${selectedPokemonAbilities.map(a => a['ability']['name'])}</span>` : ''}</span>
-                                        
                                     </div>
                                 </div>
                             </div>
@@ -175,9 +203,6 @@ function genPokeCardDetails(i) {
         </div>        
     </div>
  `;
-    document.getElementById(`pokemonName${i}`).innerHTML = pokemonName;
-    document.getElementById(`pokemonId${i}`).innerHTML = '#' + pokemonId;
-    document.getElementById(`pokemonImage${i}`).src = pokemonImg;
 }
 
 
@@ -185,7 +210,6 @@ function genPokeCardDetails(i) {
 function loadMorePokemon() {
     currentPokemonIndex += loadStop;
     loadPokemon();
-
 }
 
 
@@ -207,7 +231,6 @@ function previousPokemon(i) {
 function filterPokemon() {
     let pokemoncard = document.getElementById('card');
     pokemoncard.innerHTML = '';
-
     for (let s = 0; s < allPokemon.length; s++) {
         pokemoncard.innerHTML += `<div id="pokedex${s}" class="pokedex"></div>`;
         genPokeCard(s, allPokemon[s]);
