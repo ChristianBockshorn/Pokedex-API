@@ -4,26 +4,27 @@ let loadStop = 20;
 let currentPokemonIndex = 0;
 
 
-
+// Asynchrone Funktion zum Laden von Pokémon-Daten von der API
 async function loadPokemon() {
+    // Bestimmt den Start- und Endindex für die zu ladenden Pokémon
     const startIndex = currentPokemonIndex + 1;
     const endIndex = currentPokemonIndex + loadStop;
 
+    // Schleife zum Laden von Pokémon-Daten und Erzeugen von Karten für jedes Pokémon
     for (let i = startIndex; i <= endIndex; i++) {
         let url = `https://pokeapi.co/api/v2/pokemon/${i}/`;
         let response = await fetch(url);
         let currentPokemon = await response.json();
 
-        allPokemon.push(currentPokemon);
-
-        genPokeCard(i, currentPokemon);
-
+        allPokemon.push(currentPokemon); // Fügt das geladene Pokémon zum Array hinzu
+        genPokeCard(i, currentPokemon); // Erzeugt eine Karte für das geladene Pokémon
     }
-
 }
 
 
+// Funktion zum Erzeugen einer Pokémon-Karte
 function genPokeCard(i, currentPokemon) {
+        // Holt den Container für die Karten und fügt HTML-Code für eine neue Karte hinzu
     let pokeCard = document.getElementById(`card`);
     pokeCard.innerHTML += /* html */`
     <div id="pokedex${i}" class="pokedex" onclick="openPokeCard(${i - 1})">
@@ -37,15 +38,16 @@ function genPokeCard(i, currentPokemon) {
     </div>
     `;
 
+    // Setzt den Namen, die ID und das Bild des Pokémon auf der Karte
     document.getElementById(`pokemonName${i}`).innerHTML = currentPokemon['name'];
     document.getElementById(`pokemonId${i}`).innerHTML = '#' + currentPokemon['id'];
     document.getElementById(`pokemonImage${i}`).src = currentPokemon['sprites']['other']['official-artwork']['front_default'];
-
-
 }
 
 
+// Funktion zum Öffnen einer ausgewählten Pokémon-Karte mit Details
 function openPokeCard(i, allPokemon) {
+        // Zeigt die Karte an und ruft Funktionen zum Anzeigen von Details auf
     document.getElementById(`pokeCard`).classList.remove('d-none');
     genPokeCardDetails(i);
     renderChart(i, allPokemon);
@@ -53,11 +55,13 @@ function openPokeCard(i, allPokemon) {
 }
 
 
+// Funktion zum Schließen der geöffneten Pokémon-Karte
 function closePokeCard() {
     document.getElementById(`pokeCard`).classList.add('d-none');
 }
 
 
+// Funktion zum Verhindern des Schließens der Karte beim Klicken auf Inhalte
 function doNotClose(event) {
     event.stopPropagation();
 }
@@ -171,67 +175,35 @@ function genPokeCardDetails(i) {
         </div>        
     </div>
  `;
-
     document.getElementById(`pokemonName${i}`).innerHTML = pokemonName;
     document.getElementById(`pokemonId${i}`).innerHTML = '#' + pokemonId;
     document.getElementById(`pokemonImage${i}`).src = pokemonImg;
 }
 
 
+// Funktion zum Laden von mehr Pokémon beim Klicken auf "Mehr laden"-Button
 function loadMorePokemon() {
     currentPokemonIndex += loadStop;
     loadPokemon();
 
 }
 
+
+// Funktion zum Anzeigen des nächsten Pokémon
 function nextPokemon(i) {
     i++;
     openPokeCard(i, allPokemon);
 }
 
+
+// Funktion zum Anzeigen des vorherigen Pokémon
 function previousPokemon(i) {
     i--;
     openPokeCard(i, allPokemon);
 }
 
 
-
-
-
-
-// function filterPokemon() {
-//     let pokemoncard = document.getElementById('search');
-//     pokemoncard.innerHTML = '';
-
-//     for (let s = 0; s < allPokemon.length; s++) {
-//         let pokemon = allPokemon[s];
-//         pokemoncard.innerHTML += `pokedex${s}`;
-
-//     }
-//     searchPokemon();
-
-// }
-
-// function searchPokemon() {
-//     let search = document.getElementById('search').value;
-//     search = search.toLowerCase();
-//     console.log(search);
-   
-
-
-//     let pokemoncard = document.getElementById('search');
-//     pokemoncard.innerHTML = '';
-
-//     for (let s = 0; s < allPokemon.length; s++) {
-        
-//         let pokemon = allPokemon[`${s}`]['name'];
-//         if(pokemon.toLowerCase().includes(search)){
-//             pokemoncard.innerHTML += `${pokemon}`;
-//         }
-
-//     }
-// }
-
+// Funktion zum Filtern der angezeigten Pokémon basierend auf dem Suchbegriff
 function filterPokemon() {
     let pokemoncard = document.getElementById('card');
     pokemoncard.innerHTML = '';
@@ -243,6 +215,8 @@ function filterPokemon() {
     searchPokemon();
 }
 
+
+// Funktion zum Suchen nach Pokémon basierend auf dem eingegebenen Suchbegriff
 function searchPokemon() {
     let search = document.getElementById('search').value.toLowerCase();
     let pokemoncard = document.getElementById('card');
@@ -251,8 +225,8 @@ function searchPokemon() {
     for (let s = 0; s < allPokemon.length; s++) {
         let pokemonName = allPokemon[s]['name'].toLowerCase();
         if (pokemonName.includes(search)) {
-            pokemoncard.innerHTML += `<div id="pokedex${s}" class="pokedex"></div>`;
-            pokemoncard.innerHTML = '';
+            // pokemoncard.innerHTML += `<div id="pokedex${s}" class="pokedex"></div>`;
+            // pokemoncard.innerHTML = '';
             genPokeCard(s, allPokemon[s]);
         }
     }
